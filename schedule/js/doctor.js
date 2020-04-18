@@ -57,18 +57,38 @@ function updateAvail(){
 	docDB.set(availObject).catch(function(err){console.log(err)});
 }
 
-function readCal(callback){
-	callback(avail);
+/*Connects to the database and reads the availbility*/
+function readAvail(callback){
+	var docId = getDoctorId();
+	var docDB = db.collection(docId).doc("availability");
+	
+	//Read the availabilities
+	docDB.get().then(function(doc){
+		let data = doc.data();
+		avail = data.availability;
+		
+		//Convert each timestep to a date
+		for(let i=0; i<avail.length; i++)
+			avail[i] = avail[i].toDate();
+		
+		callback(avail);
+	})
+	.catch(function(err){console.log(err)});
 }
 
+/*Highlights the available days in the calendar
+using the availability array*/
 function initCal(){		
 	//Look through the calendar and if any dates are available then select
 	$(".vanilla-calendar-body").children().each( function(index) {
 		for(let i=0; i<avail.length; i++){
-			console.log(datesEqual(new Date($(this).attr("data-calendar-date")), avail[i]));
 			if(datesEqual(new Date($(this).attr("data-calendar-date")), avail[i])){
 				$(this).addClass("vanilla-calendar-date--confirmed");
 			}
 		}
 	});
 }
+
+(function onLoad(){
+	readAvail(initCal);
+})();
