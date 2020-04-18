@@ -90,10 +90,11 @@ let VanillaCalendar = (function () {
         }
         
         const selectDate = function () {
+
             let activeDates = element.querySelectorAll('[data-calendar-status=active]')
             activeDates.forEach(date => {
                 date.addEventListener('click', function () {
-                    removeActiveClass()
+					
                     let datas = this.dataset
                     let data = {}
                     if (datas.calendarDate)
@@ -101,7 +102,14 @@ let VanillaCalendar = (function () {
                     if (datas.calendarData)
                         data.data = JSON.parse(datas.calendarData)
                     opts.onSelect(data, this)
-                    this.classList.add('vanilla-calendar-date--selected')
+					
+					if(this.classList.contains('vanilla-calendar-date--selected')){
+						this.classList.remove('vanilla-calendar-date--selected');
+					}
+					else{
+						this.classList.add('vanilla-calendar-date--selected');
+					}
+					
                 })
             })
         }
