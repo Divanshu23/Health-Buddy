@@ -134,6 +134,7 @@ let VanillaCalendar = (function () {
         const monthPrev = function () {
             opts.date.setMonth(opts.date.getMonth() - 1)
             createMonth()
+			initCal();
         }
         
         const monthNext = function () {
