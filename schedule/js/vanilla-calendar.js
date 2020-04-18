@@ -140,6 +140,7 @@ let VanillaCalendar = (function () {
         const monthNext = function () {
             opts.date.setMonth(opts.date.getMonth() + 1)
             createMonth()
+			initCal();
         }
         
         const clearCalendar = function () {
