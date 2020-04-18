@@ -5,6 +5,7 @@
     --vanilla-calendar-today-bg-color: #E7E9ED;
     --vanilla-calendar-today-color: #333;
     --vanilla-calendar-selected-bg-color: #538fcd;
+    --vanilla-calendar-confirmed-bg-color: green;
     --vanilla-calendar-selected-color: #fff;
     --vanilla-calendar-selected-radius: 5px;
 }
@@ -113,6 +114,11 @@
 .vanilla-calendar .vanilla-calendar-date--selected {
     background-color: var(--vanilla-calendar-selected-bg-color);
     color: var(--vanilla-calendar-selected-color);
+}
+
+.vanilla-calendar .vanilla-calendar-date--confirmed {
+    background-color: var(  --vanilla-calendar-confirmed-bg-color);
+    color: var(  --vanilla-calendar-confirmed-bg-color);
 }
 
 .vanilla-calendar .vanilla-calendar-date--disabled {

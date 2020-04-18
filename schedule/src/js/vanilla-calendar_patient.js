@@ -6,12 +6,13 @@
 */
 let VanillaCalendar = (function () {
     function VanillaCalendar(options) {
-        function addEvent(el, type, handler){
+        function addEvent(el, type, handler) {
             if (!el) return
             if (el.attachEvent) el.attachEvent('on' + type, handler)
             else el.addEventListener(type, handler);
         }
-        function removeEvent(el, type, handler){
+
+        function removeEvent(el, type, handler) {
             if (!el) return
             if (el.detachEvent) el.detachEvent('on' + type, handler)
             else el.removeEventListener(type, handler);
@@ -32,23 +33,24 @@ let VanillaCalendar = (function () {
             months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             shortWeekday: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         }
-        for (let k in options) if (opts.hasOwnProperty(k)) opts[k] = options[k]
-        
+        for (let k in options)
+            if (opts.hasOwnProperty(k)) opts[k] = options[k]
+
         let element = document.querySelector(opts.selector)
         if (!element)
             return
-        
+
         const getWeekDay = function (day) {
             return ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][day]
         }
-        
+
         const createDay = function (date) {
             let newDayElem = document.createElement('div')
             let dateElem = document.createElement('span')
             dateElem.innerHTML = date.getDate()
             newDayElem.className = 'vanilla-calendar-date'
             newDayElem.setAttribute('data-calendar-date', date)
-            
+
             let available_week_day = opts.availableWeekDays.filter(f => f.day === date.getDay() || f.day === getWeekDay(date.getDay()))
             let available_date = opts.availableDates.filter(f => f.date === (date.getFullYear() + '-' + String(date.getMonth() + 1).padStart('2', 0) + '-' + String(date.getDate()).padStart('2', 0)))
             if (date.getDate() === 1) {
@@ -77,18 +79,18 @@ let VanillaCalendar = (function () {
             if (date.toString() === opts.todaysDate.toString()) {
                 newDayElem.classList.add('vanilla-calendar-date--today')
             }
-            
+
             newDayElem.appendChild(dateElem)
             opts.month.appendChild(newDayElem)
         }
-        
-        
+
+
         const removeActiveClass = function () {
             document.querySelectorAll('.vanilla-calendar-date--selected').forEach(s => {
                 s.classList.remove('vanilla-calendar-date--selected')
             })
         }
-        
+
         //NEEED FUNCTION TO SET CONFIRMED / AVAILABLE STATUSES TO CORRESPONDING DATES FROM PREVIOUS LOGIN
 
 
@@ -97,7 +99,7 @@ let VanillaCalendar = (function () {
             let activeDates = element.querySelectorAll('[data-calendar-status=active]')
             activeDates.forEach(date => {
                 date.addEventListener('click', function () {
-					
+
                     let datas = this.dataset
                     let data = {}
                     if (datas.calendarDate)
@@ -112,30 +114,30 @@ let VanillaCalendar = (function () {
                     //     }
                     // }
                     //available
-					if(this.classList.contains('vanilla-calendar-date--selected')){
+                    if (this.classList.contains('vanilla-calendar-date--selected')) {
                         this.classList.remove('vanilla-calendar-date--selected');
-                        // avail.push(data);
-                        // for(let i = 0; i < unavail.length; i++){
-                        //     if(unavail[i]==data){
-                        //         unavail.slice(i-1,i+1);
+                        // conf.push(data);
+                        //confirmed
+                        // for(let i = 0; i< conf.length; i++) {
+                        //     if (data == conf[i]){
+                        //         this.classList.add('vanilla-calendar-date--confirmed');
                         //     }
                         // }
                     }
                     //unavailable
-					else{
-                        this.classList.add('vanilla-calendar-date--selected');
-                        // unavail.push(data);
-                        // for(let i = 0; i < avail.length; i++){
-                        //     if(avail[i]==data){
-                        //         avail.slice(i-1,i+1);
+                    else {
+                        this.classList.add('vanilla-calendar-date--confirmed');
+                        // for(let i = 0; i < conf.length; i++){
+                        //     if(conf[i]==data){
+                        //         conf.slice(i-1,i+1);
                         //     }
                         // }
-					}
-					
+                    }
+
                 })
             })
         }
-        
+
         const createMonth = function () {
             clearCalendar()
             let currentMonth = opts.date.getMonth()
@@ -143,27 +145,27 @@ let VanillaCalendar = (function () {
                 createDay(opts.date)
                 opts.date.setDate(opts.date.getDate() + 1)
             }
-            
+
             opts.date.setDate(1)
-            opts.date.setMonth(opts.date.getMonth() -1)
+            opts.date.setMonth(opts.date.getMonth() - 1)
             opts.month_label.innerHTML = opts.months[opts.date.getMonth()] + ' ' + opts.date.getFullYear()
             selectDate()
         }
-        
+
         const monthPrev = function () {
             opts.date.setMonth(opts.date.getMonth() - 1)
             createMonth()
         }
-        
+
         const monthNext = function () {
             opts.date.setMonth(opts.date.getMonth() + 1)
             createMonth()
         }
-        
+
         const clearCalendar = function () {
             opts.month.innerHTML = ''
         }
-        
+
         const createCalendar = function () {
             document.querySelector(opts.selector).innerHTML = `
             <div class="vanilla-calendar-header">
@@ -186,41 +188,41 @@ let VanillaCalendar = (function () {
                 <span>${opts.shortWeekday[6]}</span>
             `
         }
-        
+
         this.init = function () {
             createCalendar()
             opts.button_prev = document.querySelector(opts.selector + ' [data-calendar-toggle=previous]')
             opts.button_next = document.querySelector(opts.selector + ' [data-calendar-toggle=next]')
             opts.month = document.querySelector(opts.selector + ' [data-calendar-area=month]')
             opts.month_label = document.querySelector(opts.selector + ' [data-calendar-label=month]')
-            
+
             opts.date.setDate(1)
             createMonth()
             setWeekDayHeader()
             addEvent(opts.button_prev, 'click', monthPrev)
             addEvent(opts.button_next, 'click', monthNext)
         }
-        
+
         this.destroy = function () {
             removeEvent(opts.button_prev, 'click', monthPrev)
             removeEvent(opts.button_next, 'click', monthNext)
             clearCalendar()
             document.querySelector(opts.selector).innerHTML = ''
         }
-        
+
         this.reset = function () {
             this.destroy()
             this.init()
         }
-        
+
         this.set = function (options) {
             for (let k in options)
                 if (opts.hasOwnProperty(k))
                     opts[k] = options[k]
             createMonth()
-//             this.reset()
+            //             this.reset()
         }
-        
+
         this.init()
     }
     return VanillaCalendar

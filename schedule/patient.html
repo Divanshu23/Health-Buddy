@@ -1,268 +1,98 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Vanilla Calendar</title>
-        <meta name="description" content="A simple Calendar in JS Vanilla">
-        <meta name="author" content="https://github.com/marssola/vanilla-calendar">
 
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="src/css/vanilla-calendar-min.css">
-        <script src="src/js/vanilla-calendar-min.js"></script>
-    </head>
-    <body>
-        <div class="content">
-            <h2>VanillaCalendar</h2>
-            <p>It's a simple calendar in JS Vanilla</p>
+<head>
+    <meta charset="utf-8">
 
-            <div class="area-buttons">
-                <button class="info" name="pastDates">Disable past dates</button>
-                <button class="info" name="availableDates">Set available dates</button>
-                <button class="info" name="availableWeekDays">Set available weekdays</button>
-            </div>
-            <div id="myCalendar" class="vanilla-calendar" style="margin-bottom: 20px"></div>
-            
-            <h3>Options</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                        <th>Default/Type</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>selector</td>
-                        <td>string</td>
-                        <td>Required selector for construct Calendar</td>
-                    </tr>
-                    <tr>
-                        <td>pastDates</td>
-                        <td>true</td>
-                        <td>Enable/Disable past dates</td>
-                    </tr>
-                    <tr>
-                        <td>availableWeekDays</td>
-                        <td>array empty</td>
-                        <td>
-                            Set the available weekdays<br/>
-                            <b>Note: If you need to pass a value when the user chooses a date, set in the object</b>
-                            <ul>
-                                <li><span class="inline-code">key</span> day</li>
-                                <li><span class="inline-code">value</span> weekday name</li>
-                            </ul>
-                            Array of Objects: 
-<pre>[
-    {day: 'monday', others: values}, 
-    {day: 'tuesday', others: values}
-]</pre>
-                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>availableDates</td>
-                        <td>array empty</td>
-                        <td>
-                            Set the available dates<br/>
-                            <b>Note: If you need to pass a value when the user chooses a date, set in the object</b>
-                            <ul>
-                                <li><span class="inline-code">key</span> date</li>
-                                <li><span class="inline-code">value</span> yyyy-mm-dd</li>
-                            </ul>
-                            Array of Objects: 
-<pre>[
-    {date: '2019-09-15', others: values}, 
-    {date: '2019-09-16', others: values}, 
-    {date: '2019-09-17', others: values}, 
-    {date: '2019-09-25', others: values}, 
-    {date: '2019-09-26', others: values}
-]</pre>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>datesFilter</td>
-                        <td>false</td>
-                        <td>Required to enable dates filtering: availableWeekDays, availableDates</td>
-                    </tr>
-                    <tr>
-                        <td>months</td>
-                        <td><pre>['January', ..., 'December']</pre>
-                        </td>
-                        <td>
-                            <pre>['Janeiro', ..., 'Dezembro']</pre>                        
-                            Months name to header of calendar
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>shortWeekday</td>
-                        <td><pre>['Sun', ..., 'Sat']</pre></td>
-                        <td>
-                            <pre>['Dom', ..., 'Sáb']</pre>
-                            Short weekday name
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>onSelect</td>
-                        <td><pre>Callback function</pre></td>
-                        <td>
-                            A  callback function to capture the date selected<br/>
-                            <ul>
-                                <li><span class="inline-code">data<span> is result contained in the selected date</li>
-                                <li><span class="inline-code">element<span> is the element clicked</li>
-                            </ul>
-                            e.g:
-<pre>
-onSelect((data, element) => {
-    
-})
-</pre>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h3>Functions</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="2">Public methods</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>init()</td>
-                        <td>Construct the calendar</td>
-                    </tr>
-                    <tr>
-                        <td>destroy()</td>
-                        <td>Destroy the calendar</td>
-                    </tr>
-                    <tr>
-                        <td>reset()</td>
-                        <td>Reset the calendar (destroy and init)</td>
-                    </tr>
-                    <tr>
-                        <td>set(object)</td>
-                        <td>
-                            Set new value for the options, e.g:
-<pre>
-// Define available dates
-set({
-    availableDates: [
-        {date: '2019-10-05'},
-        {date: '2019-10-08'},
-        {date: '2019-10-10'},
-        {date: '2019-10-15'},
-        {date: '2019-10-20'}
-    ], 
-    datesFilter: true
-})
-</pre>
-<pre>
-// Define available weekdays
-set({
-    availableWeekDays: [
-        {day: 'monday'},
-        {day: 'wednesday'},
-        {day: 'friday'}
-    ], 
-    datesFilter: true
-})
-</pre>
-<pre>
-// Disable dates filtering
-set({
-    datesFilter: false
-})
-</pre>
-<pre>
-// Enable/Disable past dates
-set({
-    pastDates: true/false
-})
-</pre>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h3>Usage</h3>
-            <pre>
-&lt;!-- html --&gt;
-&lt;div id="myCalendar" class="vanilla-calendar"&gt;&lt;/div&gt;
-            </pre>
-            <pre>
-// js
-let calendar = new VanillaCalendar({
-    selector: "#myCalendar"
-})
-            </pre>
-        
-            <h3>Filter dates</h3>
-            <p>To enable </p>
-<pre>
-calendar.set({datesFilter: true})
-</pre>
+    <title>Schedule</title>
+
+    <!----------------------------------------------->
+    <!--  Meta tag for rendering on mobile devices -->
+    <!----------------------------------------------->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!----------------------------------------------->
+    <!-- CSS: Bootstrap, Firebase, other API -->
+    <!----------------------------------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+
+    <!------------------------>
+    <!-- Your own CSS files -->
+    <!------------------------>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/css/vanilla-calendar.css">
+
+    <!--------------------------------------------------------------------->
+    <!-- JS files: Your own JavaScript functions included here    -->
+    <!--------------------------------------------------------------------->
+    <script src="src/js/vanilla-calendar_patient.js"></script>
+</head>
+
+<body>
+    <div class="content">
+
+        <!----------------------->
+        <!--  HTML Section -->
+        <!----------------------->
+        <div class="area-buttons">
         </div>
+        <div id="myCalendar" class="vanilla-calendar" style="margin-bottom: 20px"></div>
+
+        <!----------------------------------------------->
+        <!-- JS: Boostrap, Firebase, API related    -->
+        <!----------------------------------------------->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-firestore.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+        <script src="src/js/firebase_api_ernest.js"> </script>
+
+
+        <!--------------------------------------------------------------------->
+        <!-- Make calls to your own JavaScript functions, here below-->
+        <!---------------------------------------------------------------------->
+
         <script>
+
             let pastDates = true, availableDates = false, availableWeekDays = false
-            
+
             let calendar = new VanillaCalendar({
                 selector: "#myCalendar",
                 months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
                 shortWeekday: ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'],
                 onSelect: (data, elem) => {
-                    console.log(data, elem)
+
+                    console.log(data, elem);
+
+                    //grabs database and confirms appointment
+                    // let conf = [];
+
+                    // //updates database
+                    // let information = {
+                    //     appointment = conf;
+                    // }
+                    // db.collection("patient").doc(appointment).set(information);
+
+
+
                 }
             })
-            
-            let btnPastDates = document.querySelector('[name=pastDates]')
-            btnPastDates.addEventListener('click', () => {
-                pastDates = !pastDates
-                calendar.set({pastDates: pastDates})
-                btnPastDates.innerText = `${(pastDates ? 'Disable' : 'Enable')} past dates`
-            })
-            
-            let btnAvailableDates = document.querySelector('[name=availableDates]')
-            btnAvailableDates.addEventListener('click', () => {
-                availableDates = !availableDates
-                btnAvailableDates.innerText = `${(availableDates ? 'Clear available dates' : 'Set available dates')}`
-                if (!availableDates) {
-                    calendar.set({availableDates: [], datesFilter: false})
-                    return
-                }
-                let dates = () => {
-                    let result = []
-                    for (let i = 1; i < 15; ++i) {
-                        if (i % 2) continue
-                        let date = new Date(new Date().getTime() + (60 * 60 * 24 * 1000) * i)
-                        result.push({date: `${String(date.getFullYear())}-${String(date.getMonth() + 1).padStart(2, 0)}-${String(date.getDate()).padStart(2, 0)}`})
-                    }
-                    return result
-                }
-                calendar.set({availableDates: dates(), availableWeekDays: [], datesFilter: true})
-            })
-            
-            let btnAvailableWeekDays = document.querySelector('[name=availableWeekDays]')
-            btnAvailableWeekDays.addEventListener('click', () => {
-                availableWeekDays = !availableWeekDays
-                btnAvailableWeekDays.innerText = `${(availableWeekDays ? 'Clear available weekdays' : 'Set available weekdays')}`
-                if (!availableWeekDays) {
-                    calendar.set({availableWeekDays: [], datesFilter: false})
-                    return
-                }
-                let days = [{
-                    day: 'monday'
-                }, {
-                    day: 'tuesday'
-                }, {
-                    day: 'wednesday'
-                }, {
-                    day: 'friday'
-                }]
-                calendar.set({availableWeekDays: days, availableDates: [], datesFilter: true})
-            })
+
         </script>
-    </body>
+
+</body>
+
 </html>
