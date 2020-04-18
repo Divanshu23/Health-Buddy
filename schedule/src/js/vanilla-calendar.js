@@ -112,8 +112,8 @@ let VanillaCalendar = (function () {
                     //     }
                     // }
                     //available
-					if(this.classList.contains('vanilla-calendar-date--selected')){
-                        this.classList.remove('vanilla-calendar-date--selected');
+					if(this.classList.contains('vanilla-calendar-date--confirmed')){
+                        this.classList.remove('vanilla-calendar-date--confirmed');
                         // avail.push(data);
                         // for(let i = 0; i < unavail.length; i++){
                         //     if(unavail[i]==data){
@@ -123,7 +123,7 @@ let VanillaCalendar = (function () {
                     }
                     //unavailable
 					else{
-                        this.classList.add('vanilla-calendar-date--selected');
+                        this.classList.add('vanilla-calendar-date--confirmed');
                         // unavail.push(data);
                         // for(let i = 0; i < avail.length; i++){
                         //     if(avail[i]==data){
