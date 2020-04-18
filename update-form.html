@@ -16,11 +16,12 @@
 
 
 <body>
+<div class="container">
 
 <!--Patient status update form -->
-<form>
+<form onsubmit="sendFormData()" action="javascript:void(0);">
 	<div class="form-group">
-		<label for="updateType">Type of update</label>
+		<label for="updateType">Type of Update</label>
 		<select class="form-control" id="updateTypeSelect">'
 			<option>Symptom Change</option>
 			<option>Activity (ie. Going for a Walk)</option>
@@ -30,11 +31,11 @@
 	<div class="form-group">
 		<label for="dateTimePicker">Select the Time of Your Update</label>
 		<div class='input-group date' id='dateTime'>
-			<input type="text" id="datetimepicker3"/>
+			<input type="text" id="dateTimePicker"/>
 		</div>
 		
 		<script type="text/javascript">
-			$('#datetimepicker3').datetimepicker({
+			$('#dateTimePicker').datetimepicker({
 				inline:true
 			});
 		</script>
@@ -44,12 +45,15 @@
 		<label for="reportDetails">Details (Try to be as Specific as Possible)</label>
 		<textarea class="form-control" id="updateDetails"></textarea>
 	</div>
+	
+	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+</div>
 
 <!--Firebase boilerplate -->
 <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
 <script src="js/patient-form.js"></script>
-
 </body>
 </html>

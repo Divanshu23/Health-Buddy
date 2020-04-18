@@ -56,5 +56,28 @@ function addPatientStatus(patientId, statusObject){
 
 /*TODO: Retrieves the patient's id from a cookie*/
 function getPatientId(){
-	return "";
+	return "p1";
+}
+
+function getFormData(){
+	var typeOfUpdate = $("#updateTypeSelect").val();
+	var timeOfUpdate = $("#dateTimePicker").datetimepicker("getValue");
+	var details = $("#updateDetails").val();
+	
+	var statusObject = {
+		"typeOfUpdate": typeOfUpdate,
+		"timeOfUpdate": timeOfUpdate,
+		"details": details
+	};
+	console.log(statusObject);
+	return statusObject;
+}
+
+/*Retrieves the filled in form data and the patients id
+and send the info to FireBase*/
+function sendFormData(){
+	var patientId = getPatientId();
+	var statusObject = getFormData();
+	
+	addPatientStatus(patientId, statusObject);
 }
