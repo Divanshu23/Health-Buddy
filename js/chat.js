@@ -15,6 +15,11 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 var db = firebase.database().ref();
 
+function clearChat() {
+	$('#message-container').empty();
+	db.remove();
+}
+
 
 // Update the database
 function writeData() {
