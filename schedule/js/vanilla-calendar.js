@@ -104,34 +104,15 @@ let VanillaCalendar = (function () {
                         data.date = datas.calendarDate
                     if (datas.calendarData)
                         data.data = JSON.parse(datas.calendarData)
-                    opts.onSelect(data, this)
-                    //confirmed
-                    // for(let i = 0; i< conf.length; i++) {
-                    //     if (data == conf[i]){
-                    //         this.classList.add('vanilla-calendar-date--confirmed');
-                    //     }
-                    // }
-                    //available
+
 					if(this.classList.contains('vanilla-calendar-date--confirmed')){
                         this.classList.remove('vanilla-calendar-date--confirmed');
-                        // avail.push(data);
-                        // for(let i = 0; i < unavail.length; i++){
-                        //     if(unavail[i]==data){
-                        //         unavail.slice(i-1,i+1);
-                        //     }
-                        // }
-                    }
-                    //unavailable
+					}
 					else{
                         this.classList.add('vanilla-calendar-date--confirmed');
-                        // unavail.push(data);
-                        // for(let i = 0; i < avail.length; i++){
-                        //     if(avail[i]==data){
-                        //         avail.slice(i-1,i+1);
-                        //     }
-                        // }
 					}
 					
+					opts.onSelect(data, this)
                 })
             })
         }
