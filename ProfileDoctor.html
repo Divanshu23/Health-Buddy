@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Doctor Profile</title>
+    <meta name="comp1800 boilerplate code" content="my bcit project">
+    <meta name="author" content="BCIT">
+
+    <!----------------------------------------------->
+    <!--  Meta tag for rendering on mobile devices -->
+    <!----------------------------------------------->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!----------------------------------------------->
+    <!-- CSS: Bootstrap, Firebase, other API -->
+    <!----------------------------------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+    <!------------------------>
+    <!-- Your own CSS files -->
+    <!------------------------>
+    <link rel="stylesheet" href="css/profile.css">
+
+</head>
+
+<body>
+    <!------------------->
+    <!--  HTML Section -->
+    <!------------------->
+
+    <div class="container">
+        <div>
+            <br>
+            <h2>Hello doctor, <span id="title_user_name"></span></h2>
+            <h3>Your Profile</h3>
+            <br>
+            <img class="profile_picture" src="image/profile.png" alt="Profile picture">
+            <div class="container">
+                <br>
+                <p><b>Name: </b><span id="profile_name"></span></p>
+                <p><b>Email: </b><span id="profile_email"></span></p>
+        </div>
+
+        <h4>Update details:</h4>
+        
+        <form>
+            <div class="form-group row">
+                <label for="inputAge" class="col-sm-2 col-form-label">Age</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="inputEmail" placeholder="Age">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputAge" class="col-sm-2 col-form-label">Gender</label>
+                <div class="col-sm-10">
+                    <label class="mr-3">
+                        <input type="radio" class="mr-1" name="gender"> Male
+                    </label>
+                    <label class="mr-3">
+                        <input type="radio" class="mr-1" name="gender"> Female
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="inputEmail" placeholder="Address">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                    <button id="submit_btn" type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!------------------->
+    <!---- JS Files ----->
+    <!------------------->
+    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-firestore.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="js/firebase.js"> </script>
+
+    <script src="js/profile.js"></script>
+     
+
+</body>
+
+</html>
