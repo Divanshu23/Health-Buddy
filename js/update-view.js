@@ -25,6 +25,10 @@ function makeStatusCard(date, typeOfUpdate, updateDetails){
 	var card = `<div class="card">
 		<h5 class="card-title">Date</h5>
 		<p>${date}</p>
+		<h5 class="card-title">Type of Update</h5>
+		<p>${typeOfUpdate}</p>
+		<h5 class="card-title">Update Details</h5>
+		<p>${updateDetails}</p>
 	</div>`
 	
 	return card;
