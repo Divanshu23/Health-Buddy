@@ -33,7 +33,7 @@ function checkPatientExists(patientId, callback){
 /*Adds a test patient report to the firebase db
 given the patient's id and the statusObject. The
 statusObject is the results of the form submission.*/
-function addPatientStatus(patientId, statusObject){
+function addPatientStatus(patientId, statusObject, callback){
 	var doc = db.collection("patient-updates").doc(patientId);
 	
 	//Check if the patient exists to decide how to add data
@@ -43,7 +43,9 @@ function addPatientStatus(patientId, statusObject){
 		if(exists){
 			doc.update({
 				statuses: firebase.firestore.FieldValue.arrayUnion(statusObject)
-			}).catch(function(err){console.log(err)});
+			})
+			.then(callback)
+			.catch(function(err){console.log(err)});
 		} 
 		//Otherwise create a new patient
 		else {
@@ -59,7 +61,9 @@ function getPatientId(){
 	return "p1";
 }
 
+/*Gets the values of the form fields and returns them as a JSON object*/
 function getFormData(){
+
 	var typeOfUpdate = $("#updateTypeSelect").val();
 	var timeOfUpdate = $("#dateTimePicker").datetimepicker("getValue");
 	var details = $("#updateDetails").val();
@@ -69,8 +73,13 @@ function getFormData(){
 		"timeOfUpdate": timeOfUpdate,
 		"details": details
 	};
-	console.log(statusObject);
+
 	return statusObject;
+}
+
+/*Redirects the page to view all the patient's status updates*/
+function redirectToStatus(){
+	window.location.replace('update-view.html');
 }
 
 /*Retrieves the filled in form data and the patients id
@@ -79,5 +88,5 @@ function sendFormData(){
 	var patientId = getPatientId();
 	var statusObject = getFormData();
 	
-	addPatientStatus(patientId, statusObject);
+	addPatientStatus(patientId, statusObject, redirectToStatus);
 }
