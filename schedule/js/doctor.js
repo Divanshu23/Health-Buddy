@@ -42,3 +42,17 @@ function calendarClick(data, elem){
 		}
 	}	
 }
+
+/*TODO: get the doctor's id from the login session*/
+function getDoctorId(){
+	return "doctor";
+}
+
+/*Sends the availability info to FireBase*/
+function updateAvail(){
+	var docId = getDoctorId();
+	var docDB = db.collection(docId).doc("availability");
+	var availObject = {"availability": avail};
+	
+	docDB.set(availObject).catch(function(err){console.log(err)});
+}
