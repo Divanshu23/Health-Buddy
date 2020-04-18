@@ -1,18 +1,10 @@
-#send-container {
-    position: absolute;
-    bottom: 10px;
-    left: 20px;
+.area-buttons {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
 }
 
-#message-container {
-    position: absolute;
-    left: 20px;
-    width: 400px;
-    height: 500px;
-    overflow: auto;
-    border: 2px solid grey;
-}
-
-#message-container p {
-
+#myCalendar{
+	margin-bottom: 20px;
+	margin-top: 20px;
 }
