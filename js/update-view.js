@@ -79,3 +79,13 @@ function initPatientData(patientId){
 		console.log(err);
 	});
 }
+
+//TODO: get the patient id from the login data
+function getPatientId(){
+	return "p1";
+}
+
+(function renderPatientData(){
+	var patientId = getPatientId();
+	initPatientData(patientId);
+})();
