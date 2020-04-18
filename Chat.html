@@ -14,72 +14,55 @@
 </head>
 
 <body>
-  <!-- Navigation Bar -->
-  <nav id="nav-bar" class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Health Buddy</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="schedule.html">Schedule</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="update-form.html">Update Condition</a>
-		<li class="nav-item">
-			<a class="nav-link" href="update-view.html">Condition History</a>
-          <li class="nav-item">
-            <a class="nav-link" href="Chat.html">Community</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.html">Profile</a>
-          </li>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!--Hold all the messages-->
-  <div id="message-container">
-
+<!-- Navigation Bar -->
+<nav id="nav-bar" class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container">
+  <a class="navbar-brand" href="index.html">Health Buddy</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+	aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+	<ul class="navbar-nav ml-auto">
+	  <li class="nav-item active">
+		<a class="nav-link" href="index.html">Home
+		  <span class="sr-only">(current)</span>
+		</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link" href="schedule.html">Schedule</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link" href="update-form.html">Update Condition</a>
+	<li class="nav-item">
+		<a class="nav-link" href="update-view.html">Condition History</a>
+	  <li class="nav-item">
+		<a class="nav-link" href="Chat.html">Community</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link" href="profile.html">Profile</a>
+	  </li>
+	  </li>
+	</ul>
   </div>
+</div>
+</nav>
 
-  <!--The text field and submit button-->
-  <form id="send-container" onsubmit="writeData(); return false;">
-    <input type="text" id="message-input">
-    <button type="button" id="send-button" onclick="writeData()">Send</button>
-    <!-- for debugging, remove later!-->
-    <button type="button" id="clearAll" onclick="db.remove()">Clear All Database</button>
-  </form>
+<div id="mainContainer" class="container">
+	<!--Hold all the messages-->
+	<div class="text-center" id="message-container">
 
+	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-------------------------------------Javascripts here!----------------------------------------->
+	<!--The text field and submit button-->
+	<form id="send-container" onsubmit="writeData(); return false;">
+	<input type="text" id="message-input">
+	<button type="button" class="btn btn-primary" id="send-button" onclick="writeData()">Send</button>
+	<!-- for debugging, remove later!-->
+	<button type="button" class="btn btn-primary" id="clearAll" onclick="db.remove()">Clear All Database</button>
+	</form>
+	
+</div>
 
   <!--BootStrap JS-->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
