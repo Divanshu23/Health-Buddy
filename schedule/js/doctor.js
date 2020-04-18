@@ -17,7 +17,7 @@ function getSelectedStatus(elem){
 /*Checks whether two dates are equal
 ie. the day, month, and year are the same*/
 function datesEqual(date1, date2){
-	var dayEqual = (date1.getDay() == date2.getDay());
+	var dayEqual = (date1.getDate() == date2.getDate());
 	var monthEqual = (date1.getMonth() == date2.getMonth());
 	var yearEqual = (date1.getYear() == date2.getYear());
 	
@@ -55,4 +55,20 @@ function updateAvail(){
 	var availObject = {"availability": avail};
 	
 	docDB.set(availObject).catch(function(err){console.log(err)});
+}
+
+function readCal(callback){
+	callback(avail);
+}
+
+function initCal(){		
+	//Look through the calendar and if any dates are available then select
+	$(".vanilla-calendar-body").children().each( function(index) {
+		for(let i=0; i<avail.length; i++){
+			console.log(datesEqual(new Date($(this).attr("data-calendar-date")), avail[i]));
+			if(datesEqual(new Date($(this).attr("data-calendar-date")), avail[i])){
+				$(this).addClass("vanilla-calendar-date--confirmed");
+			}
+		}
+	});
 }
