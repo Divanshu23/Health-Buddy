@@ -2,13 +2,11 @@
     padding: 5%;
     font-size: 5vw;
     text-align: center;
-    -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: grey;
-
 }
 
 #background {
-    background-color: #90cfe0;
+    background-color: #f8f9fa;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
