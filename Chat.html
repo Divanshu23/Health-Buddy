@@ -48,38 +48,21 @@
     </div>
   </nav>
 
-  <!--Hold all the messages-->
-  <div id="message-container">
+<div id="mainContainer" class="container">
+	<!--Hold all the messages-->
+	<div class="text-center" id="message-container">
 
-  </div>
+	</div>
 
-  <!--The text field and submit button-->
-  <form id="send-container" onsubmit="writeData(); return false;">
-    <input type="text" id="message-input">
-    <button type="button" id="send-button" onclick="writeData()">Send</button>
-    <!-- for debugging, remove later!-->
-    <button type="button" id="clearAll" onclick="db.remove()">Clear All Database</button>
-  </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-------------------------------------Javascripts here!----------------------------------------->
+	<!--The text field and submit button-->
+	<form id="send-container" onsubmit="writeData(); return false;">
+	<input type="text" id="message-input">
+	<button type="button" class="btn btn-primary" id="send-button" onclick="writeData()">Send</button>
+	<!-- for debugging, remove later!-->
+	<button type="button" class="btn btn-primary" id="clearAll" onclick="clearChat()">Clear All Database</button>
+	</form>
+	
+</div>
 
   <!--BootStrap JS-->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -99,7 +82,7 @@
      https://firebase.google.com/docs/web/setup#available-libraries -->
   <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
 
-  <script src="js/firebase.js"></script>
+  <script src="js/chat.js"></script>
 
 
 </body>
