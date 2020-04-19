@@ -23,7 +23,7 @@
     <!-- Your own CSS files -->
     <!------------------------>
     <link rel="stylesheet" href="css/login.css">
-
+    <link rel="icon" href="image/favicon.ico" type="image/x-icon">
 </head>
 
 <body id="background">
@@ -97,7 +97,7 @@
                               
                             }).then(function () {
                                 console.log("New user added to firestore");
-                                window.location.assign("mainPage1.html");
+                                window.location.assign("index.html");
                             })
                             .catch(function (error) {
                                 console.log("Error adding new user: " + error);
@@ -115,20 +115,14 @@
             },
             // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
             signInFlow: 'popup',
-            signInSuccessUrl: 'mainPage1.html',
+            signInSuccessUrl: 'index.html',
             signInOptions: [
-                // Leave the lines as is for the providers you want to offer your users.
-                //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-                //firebase.auth.GithubAuthProvider.PROVIDER_ID,
-                firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                //firebase.auth.PhoneAuthProvider.PROVIDER_ID
+                firebase.auth.EmailAuthProvider.PROVIDER_ID
             ],
             // Terms of service url.
-            tosUrl: 'mainPage1.html',
+            tosUrl: 'index.html',
             // Privacy policy url.
-            privacyPolicyUrl: 'mainPage1.html',
+            privacyPolicyUrl: 'index.html',
             accountChooserEnabled: true
         };
         // The start method will wait until the DOM is loaded.
